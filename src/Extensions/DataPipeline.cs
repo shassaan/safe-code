@@ -13,12 +13,13 @@ namespace safe_code_demo.Extensions
             var lines = await File.ReadAllLinesAsync(fileName);
             foreach (var line in lines)
             {
-                yield return line.ValidateInput();
+                yield return line;
             }
         }
 
         public static string Transform(this string line)
         {
+            line.ValidateInput();
             var splits = line.Split(";");
             
             return $"{splits[0]} {splits[1]},{splits[2]}".ValidateOutput();
