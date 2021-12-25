@@ -21,8 +21,9 @@ namespace safe_code_demo.Extensions
         {
             line.ValidateInput();
             var splits = line.Split(";");
-            
-            return $"{splits[0]} {splits[1]},{splits[2]}".ValidateOutput();
+            var outputString = $"{splits[0]} {splits[1]},{splits[2]}".ValidateOutput();
+            Console.WriteLine(outputString);
+            return outputString;
         }
 
         public static async Task LoadAsync(this string csvLine,string fileName)
