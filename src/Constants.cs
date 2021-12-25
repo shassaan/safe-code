@@ -9,5 +9,7 @@ namespace safe_code_demo
     {
         public const string INPUT_REGEX = "^[a-zA-Z]{1,}[;]{1}[a-zA-Z]{1,}[;]{1}[0-9]{11}$";
         public const string OUTPUT_REGEX = "^[a-zA-Z]{1,}[ ]{1}[a-zA-Z]{1,}[,]{1}[0-9]{11}$";
+        public const string INPUT_FILE_NAME = "input.txt";
+        public const string OUTPUT_FILE_NAME = "output.csv";
     }
 }

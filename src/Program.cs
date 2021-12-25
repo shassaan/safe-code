@@ -1,15 +1,16 @@
-﻿using safe_code_demo.Exceptions;
+﻿using safe_code_demo;
+using safe_code_demo.Exceptions;
 using safe_code_demo.Extensions;
 
 try
 {
-    await foreach (var line in "input.txt".ExtractAsync())
+    await foreach (var line in Constants.INPUT_FILE_NAME.ExtractAsync())
     {
         try
         {
             await line
             .Transform()
-            .LoadAsync("output.csv");
+            .LoadAsync(Constants.OUTPUT_FILE_NAME);
         }
         catch (FileNotFoundException ex)
         {
