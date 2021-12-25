@@ -1,15 +1,43 @@
-﻿
-using System.Text;
+﻿using safe_code_demo.Exceptions;
+using safe_code_demo.Extensions;
 
-var inputLines = File.ReadAllLines("input.txt");
-var output = new List<string>();
-foreach (var line in inputLines)
+try
 {
-    var splits = line.Split(";");
-    output.Add($"{splits[0]} {splits[1]},{splits[2]}");
-    
+    await foreach (var line in "input.txt".ExtractAsync())
+    {
+        try
+        {
+            await line
+            .Transform()
+            .LoadAsync("output.csv");
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.WriteLine($"file not found {ex.FileName}");
+        }
+        catch (InvalidInputException ex)
+        {
+            Console.WriteLine(ex.Message);
+            continue;
+        }
+        catch (InvalidOutputException ex)
+        {
+            Console.WriteLine(ex.Message);
+            continue;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+
 }
-File.AppendAllLines("output.csv",output);
-
-
-
+catch (FileNotFoundException ex)
+{
+    Console.WriteLine($"file not found {ex.FileName}");
+}
+catch (Exception)
+{
+    throw;
+}
