@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\safe-code-demo.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -8,30 +8,25 @@ namespace safe_code_demo.Extensions
 {
     public static class DataPipeline
     {
-        public static async IAsyncEnumerable<string> Extract(this string fileName)
+        public static async IAsyncEnumerable<string> ExtractAsync(this string fileName)
         {
             var lines = await File.ReadAllLinesAsync(fileName);
             foreach (var line in lines)
             {
-                yield return line;
+                yield return line.ValidateInput();
             }
         }
 
-        public static OutputObject Transform(this string line)
+        public static string Transform(this string line)
         {
             var splits = line.Split(";");
-            var outputObject = new OutputObject
-            {
-                FirstName = splits[0],
-                LastName = splits[1],
-                PhoneNumber = splits[2]
-            };
-            return outputObject;
+            
+            return $"{splits[0]} {splits[1]},{splits[2]}".ValidateOutput();
         }
 
-        public static void Load(this OutputObject outputObject,string fileName)
+        public static async Task LoadAsync(this string csvLine,string fileName)
         {
-            
+            await File.AppendAllTextAsync(fileName,$"\n{csvLine}");
         }
     }
 }
