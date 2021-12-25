@@ -2,19 +2,14 @@
 using System.Text;
 
 var inputLines = File.ReadAllLines("input.txt");
-var jsonBuilder = new StringBuilder();
-jsonBuilder.Append("[");
+var output = new List<string>();
 foreach (var line in inputLines)
 {
     var splits = line.Split(";");
-    jsonBuilder.Append("{");
-    jsonBuilder.Append($"\"firstName\":\"{splits[0]}\",");
-    jsonBuilder.Append($"\"lastName\":\"{splits[1]}\",");
-    jsonBuilder.Append($"\"phoneNumber\":\"{splits[2]}\"");
-    jsonBuilder.Append("},");
+    output.Add($"{splits[0]} {splits[1]},{splits[2]}");
+    
 }
-jsonBuilder.Append("]");
-File.WriteAllText("output.json",jsonBuilder.ToString());
+File.AppendAllLines("output.csv",output);
 
 
 
