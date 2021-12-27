@@ -7,23 +7,6 @@ using safe_code_demo.Extensions;
 await StartPipeLineAsync();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async Task StartPipeLineAsync()
 {
     try
