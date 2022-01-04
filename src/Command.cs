@@ -19,23 +19,7 @@ namespace safe_code_demo
         public async ValueTask ExecuteAsync(IConsole console)
         {
             await startPipeLineAsync(File?.Name);
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        }   
         private async Task startPipeLineAsync(string? fileName)
         {
             try
